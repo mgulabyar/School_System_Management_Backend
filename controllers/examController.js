@@ -26,11 +26,23 @@ exports.createExam = async (req, res) => {
     }
 };
 
+exports.getExams = async (req, res) => {
+    try {
+        const exams = await Exam.find().populate('class', 'name');
+        res.status(200).json({
+            success: true,
+            count: exams.length,
+            data: exams
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+};
+
 exports.enterMarks = async (req, res) => {
     try {
         const { examId, subjectId, records } = req.body;
-        
-        const markedBy = req.user.id; 
+        const markedBy = req.user.id;
 
         if (!records || records.length === 0) {
             return res.status(400).json({ success: false, message: 'No marks records provided!' });
@@ -67,7 +79,7 @@ exports.getStudentReportCard = async (req, res) => {
     try {
         const { studentId, examId } = req.params;
 
-        const student = await Student.findById(studentId).populate('user', 'name email');
+        const student = await Student.findById(studentId).populate('user', 'name');
         if (!student) {
             return res.status(404).json({ success: false, message: 'Student not found!' });
         }
@@ -78,11 +90,12 @@ exports.getStudentReportCard = async (req, res) => {
         }
 
         const marks = await ExamMark.find({ student: studentId, exam: examId })
-            .populate('subject', 'name code'); 
+            .populate('subject', 'name code');
 
         if (marks.length === 0) {
             return res.status(404).json({ success: false, message: 'No marks entered for this exam yet!' });
         }
+
         let totalObtained = 0;
         let totalMaximum = 0;
 
@@ -138,17 +151,19 @@ exports.getMeritList = async (req, res) => {
 
         const studentScores = {};
         allMarks.forEach(record => {
-            const sId = record.student._id.toString();
-            if (!studentScores[sId]) {
-                studentScores[sId] = {
-                    name: record.student.user.name,
-                    admissionNo: record.student.admissionNo,
-                    obtained: 0,
-                    total: 0
-                };
+            if (record.student && record.student.user) {
+                const sId = record.student._id.toString();
+                if (!studentScores[sId]) {
+                    studentScores[sId] = {
+                        name: record.student.user.name,
+                        admissionNo: record.student.admissionNo,
+                        obtained: 0,
+                        total: 0
+                    };
+                }
+                studentScores[sId].obtained += record.obtainedMarks;
+                studentScores[sId].total += record.totalMarks;
             }
-            studentScores[sId].obtained += record.obtainedMarks;
-            studentScores[sId].total += record.totalMarks;
         });
 
         const meritList = Object.values(studentScores).map(item => {
@@ -157,7 +172,7 @@ exports.getMeritList = async (req, res) => {
                 ...item,
                 percentage: parseFloat(percentage)
             };
-        }).sort((a, b) => b.percentage - a.percentage); 
+        }).sort((a, b) => b.percentage - a.percentage);
 
         res.status(200).json({
             success: true,

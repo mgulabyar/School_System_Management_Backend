@@ -4,12 +4,16 @@ const libraryController = require("../controllers/libraryController");
 
 const { protect, authorize } = require("../middleware/authMiddleware");
 
+// Books CRUD
 router.post(
   "/books",
   protect,
   authorize("super_admin", "admin"),
   libraryController.addBook,
 );
+router.get("/books", protect, libraryController.getBooks); // Added GET Books Route
+
+// Issue & Return
 router.post(
   "/issue",
   protect,
@@ -23,17 +27,7 @@ router.put(
   libraryController.returnBook,
 );
 
+// Logs
 router.get("/issued-list", protect, libraryController.getIssuedBooks);
-router.put(
-  "/books/:id",
-  protect,
-  authorize("super_admin", "admin"),
-  libraryController.updateBook,
-);
-router.delete(
-  "/books/:id",
-  protect,
-  authorize("super_admin", "admin"),
-  libraryController.deleteBook,
-);
+
 module.exports = router;

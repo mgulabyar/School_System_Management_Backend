@@ -1,10 +1,9 @@
 const Notification = require('../models/Notification');
 
-// 1. Send simulated Notification (SMS or WhatsApp)
 exports.sendNotification = async (req, res) => {
     try {
         const { recipientId, recipientPhone, message, channel } = req.body;
-        const sender = req.user.id; // Logged in admin ID from token
+        const sender = req.user.id; 
 
         if (!recipientPhone || !message || !channel) {
             return res.status(400).json({ 
