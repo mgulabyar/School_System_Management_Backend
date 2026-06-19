@@ -249,7 +249,7 @@ exports.deleteClass = async (req, res) => {
     }
 };
 
-//rack school events, academic terms, and holiday schedules
+//rack  terms, and holiday schedules
 
 exports.updateSubject = async (req, res) => {
     try {
