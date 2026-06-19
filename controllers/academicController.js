@@ -249,7 +249,6 @@ exports.deleteClass = async (req, res) => {
     }
 };
 
-//rack  terms,
 
 exports.updateSubject = async (req, res) => {
     try {
