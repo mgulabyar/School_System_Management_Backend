@@ -26,7 +26,6 @@ exports.createSection = async (req, res) => {
   }
 };
 
-// Create and persist a new weekly timetable slot allocation with assigned teacher and subject
 
 exports.createClass = async (req, res) => {
   try {
