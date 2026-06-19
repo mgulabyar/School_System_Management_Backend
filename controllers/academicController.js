@@ -164,6 +164,8 @@ exports.getTimetable = async (req, res) => {
   }
 };
 
+// Update subject attributes by checking for subject code conflicts in other records
+
 exports.createCalendarEvent = async (req, res) => {
   try {
     const { title, description, startDate, endDate, type } = req.body;
