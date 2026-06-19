@@ -249,7 +249,6 @@ exports.deleteClass = async (req, res) => {
     }
 };
 
-// Create a new calendar record to track school events, academic terms, and holiday schedules
 
 exports.updateSubject = async (req, res) => {
     try {
