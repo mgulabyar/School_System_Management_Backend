@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// it is for book database schema.
 const bookSchema = new mongoose.Schema({
     title: {
         type: String,
