@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// i want to make this logic for exacmt management system
 const examSchema = new mongoose.Schema({
     name: {
         type: String,
