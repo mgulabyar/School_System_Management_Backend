@@ -151,4 +151,3 @@ exports.voidInvoice = async (req, res) => {
     }
 };
 
-// fee control
