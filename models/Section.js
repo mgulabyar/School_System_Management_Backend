@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// section of classes
+// section 
 const sectionSchema = new mongoose.Schema({
     name: {
         type: String,
