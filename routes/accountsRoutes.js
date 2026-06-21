@@ -3,7 +3,7 @@ const router = express.Router();
 const accountsController = require("../controllers/accountsController");
 
 const { protect, authorize } = require("../middleware/authMiddleware");
-
+// trancttion routes 
 router.post(
   "/transaction",
   protect,
