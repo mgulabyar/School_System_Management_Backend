@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-
+// jwt stand for json web token.
 exports.protect = async (req, res, next) => {
     try {
         let token;
