@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// 
 const feeInvoiceSchema = new mongoose.Schema({
     student: {
         type: mongoose.Schema.Types.ObjectId,
