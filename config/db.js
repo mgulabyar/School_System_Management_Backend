@@ -11,4 +11,5 @@ const connectDB = async () => {
     }
 };
 
+// consloe log
 module.exports = connectDB;
