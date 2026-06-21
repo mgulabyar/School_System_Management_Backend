@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// i make this schema for route mean ways fo
 const routeSchema = new mongoose.Schema({
     routeName: {
         type: String,
