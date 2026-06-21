@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// this is my database schema for give/issue books of students and teacher both.
 const bookIssueSchema = new mongoose.Schema({
     book: {
         type: mongoose.Schema.Types.ObjectId,
