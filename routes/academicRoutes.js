@@ -104,11 +104,9 @@ router.get('/sections', protect, academicController.getSections); // Added GET S
 router.post('/classes', protect, authorize('super_admin', 'admin'), academicController.createClass);
 router.get('/classes', protect, academicController.getAllClasses);
 
-// Subjects CRUD
 router.post('/subjects', protect, authorize('super_admin', 'admin'), academicController.createSubject);
 router.get('/classes/:classId/subjects', protect, academicController.getSubjectsByClass);
 
-// Timetable & Calendar routes
 router.post('/timetable', protect, authorize('super_admin', 'admin'), academicController.createTimetableSlot);
 router.get('/timetable/:classId/:sectionId', protect, academicController.getTimetable);
 
