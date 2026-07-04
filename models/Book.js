@@ -13,8 +13,7 @@ const bookSchema = new mongoose.Schema({
     isbn: {
         type: String,
         unique: true,
-        sparse: true,
-        // sparse:true 
+        sparse: true, 
         trim: true
     },
     quantity: {
