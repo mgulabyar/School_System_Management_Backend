@@ -13,7 +13,7 @@ exports.protect = async (req, res, next) => {
                 message: 'Access Denied! No token provided.' 
             });
         }
-// access denided no token provided
+
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         
         req.user = decoded;
