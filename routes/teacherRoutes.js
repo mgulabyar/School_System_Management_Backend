@@ -45,3 +45,4 @@ router.delete(
   teacherController.deleteTeacher,
 );
 module.exports = router;
+// teacherRoutes.js
