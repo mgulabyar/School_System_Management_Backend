@@ -28,7 +28,6 @@ router.get(
   authorize("super_admin", "admin", "accountant"),
   feeController.getDefaultersList,
 );
-// /collect/:id
 router.delete(
   "/collect/:id",
   protect,
