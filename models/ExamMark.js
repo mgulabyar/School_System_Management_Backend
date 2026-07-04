@@ -6,6 +6,7 @@ const examMarkSchema = new mongoose.Schema({
         ref: 'Exam', 
         required: true
     },
+    // // studnetid
     student: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Student', 
